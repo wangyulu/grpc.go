@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "grpc.go/protos/common/page.proto";
+import "addr.proto";
+
+package users;
+
+message User {
+    int32 Id = 1;
+    string Name = 2;
+    repeated Addr addresses = 3;
+}
+
+service Users {
+    rpc Lists (UserListsReq) returns (UserListsResp) {}
+}
+
+message UserListsReq {
+    common.Page page = 1;
+}
+
+message UserListsResp {
+    repeated User users = 1;
+}
